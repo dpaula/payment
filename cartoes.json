@@ -1,0 +1,37 @@
+[
+    {
+        "bandeira": "AMERICAN_EXPRESS",
+        "numero": 377041167641959,
+        "cvv": "123"
+    },
+    {
+        "bandeira": "AMERICAN_EXPRESS",
+        "numero": 345471418569502,
+        "cvv": "770"
+    },
+    {
+        "bandeira": "AMERICAN_EXPRESS",
+        "numero": 379230085546394,
+        "cvv": "223"
+    },
+    {
+        "bandeira": "AMERICAN_EXPRESS",
+        "numero": 347771226540985,
+        "cvv": "302"
+    },
+    {
+        "bandeira": "AMERICAN_EXPRESS",
+        "numero": 346611082819977,
+        "cvv": "114"
+    },
+    {
+        "bandeira": "AMERICAN_EXPRESS",
+        "numero": 343441906469822,
+        "cvv": "042"
+    },
+    {
+        "bandeira": "AMERICAN_EXPRESS",
+        "numero": 373756127942163,
+        "cvv": "983"
+    }
+]

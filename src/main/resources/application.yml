@@ -1,0 +1,14 @@
+server:
+  port: 8088
+
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8090/realms/dpaula
+
+  data:
+    mongodb:
+      uri: mongodb+srv://dev:CGn5X2KfC3QpyPAy@cluster0.beg32.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+      database: dpaula
