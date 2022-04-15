@@ -24,11 +24,11 @@ public class Cartao {
 
     @Indexed(unique = true)
     private String numero;
-    private String nome;
+    private String nomeImpresso;
     private LocalDate validade;
     private EnCartaoBandeira bandeira;
     private BigDecimal limite;
-    private Integer vencimento;
+    private Integer diaVencimento;
     private Integer cvv;
 
     private List<Fatura> faturas;

@@ -6,6 +6,7 @@ import lombok.Builder;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import static java.util.Objects.isNull;
 
@@ -14,7 +15,7 @@ import static java.util.Objects.isNull;
  */
 public record CartaoDTO(String numero,
                         String nome,
-                        LocalDate validade,
+                        String validade,
                         Integer cvv,
                         EnCartaoBandeira bandeira,
                         BigDecimal limite,
@@ -30,12 +31,17 @@ public record CartaoDTO(String numero,
 
         return CartaoDTO.builder()
                 .numero(cartao.getNumero())
-                .nome(cartao.getNome())
-                .validade(cartao.getValidade())
+                .nome(cartao.getNomeImpresso())
+                .validade(getDataValidade(cartao.getValidade()))
                 .cvv(cartao.getCvv())
                 .bandeira(cartao.getBandeira())
                 .limite(cartao.getLimite())
-                .vencimento(cartao.getVencimento())
+                .vencimento(cartao.getDiaVencimento())
                 .build();
+    }
+
+    private static String getDataValidade(final LocalDate validade) {
+        final var isoDate = DateTimeFormatter.ofPattern("MM/yy");
+        return validade.format(isoDate);
     }
 }

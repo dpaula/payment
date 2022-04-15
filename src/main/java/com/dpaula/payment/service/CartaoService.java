@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import javax.validation.constraints.NotBlank;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -40,14 +41,29 @@ public class CartaoService {
 
         final var cartao = gerarNumeroCartao(dadosSolicitacaoCartaoInput.bandeira());
 
-        return Cartao.builder()
+        final var novoCartao = Cartao.builder()
                 .bandeira(dadosSolicitacaoCartaoInput.bandeira())
                 .numero(cartao.getNumero())
-                .nome(dadosSolicitacaoCartaoInput.nomeImpresso())
+                .nomeImpresso(dadosSolicitacaoCartaoInput.nomeImpresso())
                 .limite(new BigDecimal("1000"))
-                .vencimento(dadosSolicitacaoCartaoInput.diaVencimento())
+                .diaVencimento(dadosSolicitacaoCartaoInput.diaVencimento())
                 .cvv(cartao.getCvv())
+                .validade(getDataValidade())
                 .build();
+
+        marcarCartaoCreditoComoIndisponivel(cartao);
+
+        return novoCartao;
+    }
+
+    private static LocalDate getDataValidade() {
+        return LocalDate.now().plusYears(5);
+    }
+
+    private void marcarCartaoCreditoComoIndisponivel(final CartaoCredito cartao) {
+        log.info("Marcando cartão de crédito como indisponível");
+        cartao.setDisponivel(false);
+        repository.save(cartao);
     }
 
     private CartaoCredito gerarNumeroCartao(@NotBlank final EnCartaoBandeira bandeira) {

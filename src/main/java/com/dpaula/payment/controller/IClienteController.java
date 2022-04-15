@@ -6,7 +6,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
@@ -16,8 +19,9 @@ import java.util.List;
 @RequestMapping("/clientes")
 public interface IClienteController {
 
-    record DadosSolicitacaoCartaoInput(@NotBlank String cpf, @NotBlank Integer diaVencimento,
-                                       @NotBlank EnCartaoBandeira bandeira,
+    record DadosSolicitacaoCartaoInput(@NotBlank String cpf,
+                                       @Min(1) @Max(25) Integer diaVencimento,
+                                       @NotNull EnCartaoBandeira bandeira,
                                        @NotBlank String nomeImpresso) {
 
     }
